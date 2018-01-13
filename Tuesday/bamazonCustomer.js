@@ -65,7 +65,7 @@ function makePurchase() {
 function upDateQuantity(bobQuan, bobId) {
 
   var query = connection.query(
-
+//This does my math to subtract 
     "UPDATE products SET quantity = quantity - ? WHERE id = ?", [bobQuan, bobId],
 
     function (err, res) {
