@@ -1,10 +1,11 @@
+// Requiring my NPM packages
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var table = require("console.table");
 
 
 
-
+//Making my connection to mysql
 var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
@@ -16,7 +17,7 @@ var connection = mysql.createConnection({
   password: "",
   database: "sql_hwkDB"
 });
-
+//This function makes my list appear in the console
 function makeList() {
   connection.query("SELECT * FROM products", function (err, res) {
 
@@ -28,17 +29,18 @@ function makeList() {
 }
 
 
-
+//This shows me that I'm connected 
 connection.connect(function (err) {
   if (err) throw err;
   console.log("connected as id " + connection.threadId + "\n");
+  //Here I am calling the make list and make purchase functions
   makeList();
   makePurchase();
 });
 
 
 
-
+//This function is making my inquirer prompt in the console 
 function makePurchase() {
   inquirer.prompt([
     {
@@ -53,13 +55,13 @@ function makePurchase() {
 
 
   ])
-
+//This is my promise to get the user answer back before calling checkQuanity
     .then(function (answers) {
       checkQuantity(answers.quantity, answers.id);
 
     })
 }
-
+//Here is where I am updating my quanity
 function upDateQuantity(bobQuan, bobId) {
 
   var query = connection.query(
@@ -74,11 +76,11 @@ function upDateQuantity(bobQuan, bobId) {
 
       makeList();
 
-      // connection.end();
+    
     }
   );
 }
-
+//This is checking my quantity and running logic to let the user know if there is enough product available
 function checkQuantity(bobQuan, bobId) {
   connection.query("SELECT quantity FROM products WHERE id = ?", [bobId], function (err, res) {
     if (err) throw err;
@@ -103,4 +105,4 @@ function checkQuantity(bobQuan, bobId) {
 
 
 
-// checkQuantity();
+
