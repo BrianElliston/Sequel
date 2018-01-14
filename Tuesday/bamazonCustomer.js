@@ -47,6 +47,8 @@ function makeList() {
 
 //This function is making my inquirer prompt in the console 
 function makePurchase(products) {
+  console.log('_.~"~._.~"~._.~Welcome to BAMazon~._.~"~._.~"~._');
+  console.log('------------------------------------------------');
   inquirer.prompt([
     {
       name: "id",
