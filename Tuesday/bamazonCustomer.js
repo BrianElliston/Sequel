@@ -52,7 +52,7 @@ function makePurchase(products) {
   inquirer.prompt([
     {
       name: "id",
-      message: "What item do you want to buy?: "
+      message: "What item number do you want to buy?: "
     },
     {
       name: "quantity",
@@ -91,9 +91,9 @@ function upDateQuantity(bobQuan, bobId) {
 function checkQuantity(bobQuan, bobId) {
   connection.query("SELECT quantity FROM products WHERE id = ?", [bobId], function (err, res) {
     if (err) throw err;
-    console.log(res);
+    
 
-    if (parseInt(bobQuan) > parseInt(res.quantity)) {
+    if (parseInt(bobQuan) > parseInt(res[0].quantity)) {
       console.log("Not that many in stock, please be less greedy!!")
 
     }
