@@ -2,7 +2,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var table = require("console.table");
-
+var chalk = require("chalk");
 
 
 //Making my connection to mysql
@@ -47,7 +47,8 @@ function makeList() {
 
 //This function is making my inquirer prompt in the console 
 function makePurchase(products) {
-  console.log('_.~"~._.~"~._.~Welcome to BAMazon~._.~"~._.~"~._');
+  console.log(chalk.green('_.~"~._.~"~._.~Welcome to BAMazon~._.~"~._.~"~._'));
+  
   console.log('------------------------------------------------');
   inquirer.prompt([
     {
@@ -94,7 +95,7 @@ function checkQuantity(bobQuan, bobId) {
     
 
     if (parseInt(bobQuan) > parseInt(res[0].quantity)) {
-      console.log("Not that many in stock, please be less greedy!!")
+      console.log(chalk.red("Not that many in stock, please be less greedy!!"));
 
     }
     else {
